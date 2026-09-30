@@ -1,0 +1,337 @@
+<!DOCTYPE html> <!-- always include the Doctype Immediately. -->
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Brian Sanchez | Computer Science Student</title>
+    <meta name="description" content="Brian Sanchez - Computer Science student at UW-Green Bay with an emphasis in Software Engineering. iOS and SQL projects.">
+
+    <!-- use google font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --green: #00613a;
+            --green-dark: #004a2c;
+            --text: #1f2933;
+            --text-soft: #52606d;
+            --card: #ffffff;
+            --page: #f4f6f5;
+            --radius: 14px;
+            --shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        * { box-sizing: border-box; }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            margin: 0;
+            font-family: "Inter", Arial, sans-serif;
+            color: var(--text);
+            background-color: var(--page);
+            line-height: 1.6;
+        }
+
+        /* ---------- UWGB Photo with header ---------- */
+        .hero {
+            min-height: 70vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 60px 20px;
+            color: #ffffff;
+            background-color: var(--green-dark); /* fallback if the image is missing */
+            background-image:
+                linear-gradient(rgba(0, 0, 0, 0.55), rgba(0, 40, 24, 0.65)),
+                url("UWGB.jpg");
+            background-size: cover;
+            background-position: center;
+        }
+
+        .hero h1 {
+            font-size: clamp(2.4rem, 6vw, 4rem);
+            font-weight: 800;
+            margin: 0;
+            letter-spacing: -1px;
+        }
+
+        .hero .tagline {
+            font-size: clamp(1.05rem, 2.5vw, 1.3rem);
+            margin: 10px 0 30px;
+            color: rgba(255, 255, 255, 0.85);
+        }
+
+        /* ---------- Buttons added ---------- */
+        .buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            justify-content: center;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 22px;
+            border-radius: 999px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
+        }
+
+        .btn-primary {
+            background-color: var(--green);
+            color: #ffffff;
+        }
+
+        .btn-outline {
+            border: 2px solid #ffffff;
+            color: #ffffff;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.25);
+        }
+
+        .btn-primary:hover { background-color: var(--green-dark); }
+        .btn-outline:hover { background-color: rgba(255, 255, 255, 0.15); }
+
+        /* ---------- Main content cards ---------- */
+        main {
+            max-width: 900px;
+            margin: -60px auto 0; /* cards overlap the bottom of the hero slightly */
+            padding: 0 20px 40px;
+            position: relative;
+        }
+
+        .card {
+            background-color: var(--card);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            padding: 32px;
+            margin-bottom: 24px;
+            opacity: 0;
+            animation: fadeUp 0.7s ease forwards;
+        }
+
+        /* Stagger the fade-in so cards appear one after another */
+        .card:nth-child(2) { animation-delay: 0.1s; }
+        .card:nth-child(3) { animation-delay: 0.2s; }
+        .card:nth-child(4) { animation-delay: 0.3s; }
+        .card:nth-child(5) { animation-delay: 0.4s; }
+
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
+
+        .card h2 {
+            margin-top: 0;
+            font-size: 1.5rem;
+            color: var(--green);
+        }
+
+        .card p { color: var(--text-soft); }
+
+        /* Lists */
+        .card ol, .card ul {
+            padding-left: 22px;
+            color: var(--text-soft);
+        }
+        .card li { margin-bottom: 8px; }
+        .card li::marker { color: var(--green); font-weight: 700; }
+
+        /* Two cards side by side on wide screens */
+        .grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
+        }
+        .grid .card { margin-bottom: 0; }
+
+        /* ---------- Links ---------- */
+        .links { text-align: center; }
+        .links p { margin-top: 0; margin-bottom: 20px; }
+
+        /* ---------- Projects ---------- */
+        .project {
+            border-left: 4px solid var(--green);
+            padding: 4px 0 4px 20px;
+            margin-bottom: 28px;
+        }
+        .project:last-child { margin-bottom: 0; }
+
+        .project h3 {
+            margin: 0 0 4px;
+            font-size: 1.15rem;
+            color: var(--text);
+        }
+        .project p { margin: 0; }
+
+        .tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin: 12px 0 20px;
+        }
+
+        .tag {
+            background-color: #e6f2ec;
+            color: var(--green);
+            font-size: 0.85rem;
+            font-weight: 600;
+            padding: 4px 12px;
+            border-radius: 999px;
+        }
+
+        /* ---------- Tables ---------- */
+        /* Table with no border */
+        .plain-table th {
+            text-align: left;
+            font-weight: 500;
+            color: var(--text-soft);
+            padding: 4px 0;
+        }
+
+        /* ---------- Footer ---------- */
+        footer {
+            text-align: center;
+            padding: 30px 20px;
+            color: var(--text-soft);
+            font-size: 0.9rem;
+        }
+        footer a {
+            color: var(--green);
+            font-weight: 600;
+            text-decoration: none;
+            margin: 0 8px;
+        }
+        footer a:hover { text-decoration: underline; }
+
+        /* ---------- Phone-friendly layout ---------- */
+        @media (max-width: 700px) {
+            .grid { grid-template-columns: 1fr; }
+            .card { padding: 22px; }
+            .hero { min-height: 60vh; }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Hero header -->
+    <header class="hero">
+        <h1>Brian Sanchez</h1>
+        <p class="tagline">Computer Science Student at UWGB, with an emphasis on Software Engineering</p>
+    </header>
+
+    <main>
+
+        <!-- Links -->
+        <section class="card links">
+            <h2>Links</h2>
+            <p>Click on a hyperlink to visit the page.</p>
+            <div class="buttons">
+                <a class="btn btn-primary" href="https://github.com/briancsofficial-oss" target="_blank" rel="noopener">GitHub</a>
+                <a class="btn btn-primary" href="https://www.linkedin.com/in/brian-sanchez-5754731aa" target="_blank" rel="noopener">LinkedIn</a>
+                <a class="btn btn-primary" href="https://www.uwgb.edu/" target="_blank" rel="noopener">UWGB</a>
+                <a class="btn btn-primary" href="mailto:BCV.Sanchez@outlook.com">Email Me</a>
+            </div>
+        </section>
+        <!-- About Me -->
+        <section class="card">
+            <h2>About Me</h2>
+            <p>I'm a Computer Science student at UW-Green Bay with an emphasis in Software Engineering. I build iOS apps in Swift and SwiftUI and design relational databases with SQL. Before studying CS, I worked in banking, logistics, and sales, which taught me to solve problems for real customers in fast-paced environments.</p>
+
+            <!-- Table with no border -->
+            <table class="plain-table">
+                <thead>
+                    <tr><th>&#127891; B.S. Computer Science, expected May 2028</th></tr>
+                    <tr><th>&#127942; Semester Honors, Spring 2026</th></tr>
+                    <tr><th>&#128483; Bilingual: English and Spanish</th></tr>
+                    <tr><th>&#128205; Green Bay, Wisconsin</th></tr>
+                </thead>
+            </table>
+        </section>
+
+        <!-- Projects -->
+        <section class="card">
+            <h2>Projects</h2>
+
+            <div class="project">
+                <h3>The Wealth App: Personal Finance iOS App</h3>
+                <p>A five-tab personal finance app I built on my own in Swift and SwiftUI (~3,300 lines). It includes account and transaction views, a net-worth projection calculator charted with Swift Charts, debt payoff planning using the avalanche method, and savings goals with progress tracking. Data is saved on the device with Codable and JSON.</p>
+                <div class="tags">
+                    <span class="tag">Swift</span>
+                    <span class="tag">SwiftUI</span>
+                    <span class="tag">Swift Charts</span>
+                    <span class="tag">Xcode</span>
+                </div>
+            </div>
+
+            <div class="project">
+                <h3>Library Database Management System</h3>
+                <p>A normalized relational database for a library, built in Microsoft SQL Server. It models books, authors, copies, visitors, memberships, loans, languages, and sections with primary and foreign keys, plus queries for memberships, book availability, and visitor activity.</p>
+                <div class="tags">
+                    <span class="tag">SQL</span>
+                    <span class="tag">Microsoft SQL Server</span>
+                    <span class="tag">Database Design</span>
+                </div>
+                <a class="btn btn-primary" href="https://github.com/briancsofficial-oss/SQL-Database-Project-" target="_blank" rel="noopener">View on GitHub</a>
+            </div>
+
+            <div class="project">
+                <h3>Personal Website</h3>
+                <p>This website, which I designed and built from scratch. It uses CSS Grid, Flexbox, and media queries for a layout that works on phones, with hover and fade-in animations.</p>
+                <div class="tags">
+                    <span class="tag">HTML</span>
+                    <span class="tag">CSS</span>
+                    <span class="tag">Git</span>
+                </div>
+                <a class="btn btn-primary" href="https://github.com/briancsofficial-oss" target="_blank" rel="noopener">View My GitHub</a>
+            </div>
+        </section>
+
+        <!-- Goals and Interests side by side -->
+        <div class="grid">
+            <!-- Ordered list -->
+            <section class="card">
+                <h2>Goals in CS</h2>
+                <ol>
+                    <li>Grow my overall knowledge of software engineering.</li>
+                    <li>Learn more about machine learning and AI.</li>
+                    <li>Learn more about cloud-based services, including their risks and benefits.</li>
+                </ol>
+            </section>
+
+            <!-- Unordered list -->
+            <section class="card">
+                <h2>Interests</h2>
+                <ul>
+                    <li>Weightlifting whenever I can.</li>
+                    <li>Playing fútbol (soccer) whenever I get the chance.</li>
+                    <li>Gaming in my free time.</li>
+                </ul>
+            </section>
+        </div>
+
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <p>
+            <a href="https://github.com/briancsofficial-oss" target="_blank" rel="noopener">GitHub</a>
+            <a href="https://www.linkedin.com/in/brian-sanchez-5754731aa" target="_blank" rel="noopener">LinkedIn</a>
+            <a href="https://www.uwgb.edu/" target="_blank" rel="noopener">UWGB</a>
+            <a href="mailto:BCV.Sanchez@outlook.com">Email</a>
+        </p>
+        <p>&copy; 2026 Brian Sanchez</p>
+    </footer>
+
+</body>
+</html>
