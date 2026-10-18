@@ -1,337 +1,406 @@
-<!DOCTYPE html> <!-- always include the Doctype Immediately. -->
-<html lang="en">
+<!DOCTYPE html>
+<html lang="en" class="no-js">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Brian Sanchez | Computer Science Student</title>
-    <meta name="description" content="Brian Sanchez - Computer Science student at UW-Green Bay with an emphasis in Software Engineering. iOS and SQL projects.">
+    <meta name="description" content="Brian Sanchez - Computer Science student at UW-Green Bay with a dual emphasis in Software Engineering and Artificial Intelligence. iOS, AI, and SQL projects.">
+    <meta name="theme-color" content="#120b3a">
 
-    <!-- use google font -->
+    <!-- fonts: Orbitron for the logo and headings, Poppins for body text -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&family=Poppins:wght@200;300;400;500;600&display=swap" rel="stylesheet">
 
-    <style>
-        :root {
-            --green: #00613a;
-            --green-dark: #004a2c;
-            --text: #1f2933;
-            --text-soft: #52606d;
-            --card: #ffffff;
-            --page: #f4f6f5;
-            --radius: 14px;
-            --shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
-        }
-
-        * { box-sizing: border-box; }
-
-        html { scroll-behavior: smooth; }
-
-        body {
-            margin: 0;
-            font-family: "Inter", Arial, sans-serif;
-            color: var(--text);
-            background-color: var(--page);
-            line-height: 1.6;
-        }
-
-        /* ---------- UWGB Photo with header ---------- */
-        .hero {
-            min-height: 70vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            padding: 60px 20px;
-            color: #ffffff;
-            background-color: var(--green-dark); /* fallback if the image is missing */
-            background-image:
-                linear-gradient(rgba(0, 0, 0, 0.55), rgba(0, 40, 24, 0.65)),
-                url("UWGB.jpg");
-            background-size: cover;
-            background-position: center;
-        }
-
-        .hero h1 {
-            font-size: clamp(2.4rem, 6vw, 4rem);
-            font-weight: 800;
-            margin: 0;
-            letter-spacing: -1px;
-        }
-
-        .hero .tagline {
-            font-size: clamp(1.05rem, 2.5vw, 1.3rem);
-            margin: 10px 0 30px;
-            color: rgba(255, 255, 255, 0.85);
-        }
-
-        /* ---------- Buttons added ---------- */
-        .buttons {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 12px;
-            justify-content: center;
-        }
-
-        .btn {
-            display: inline-block;
-            padding: 12px 22px;
-            border-radius: 999px;
-            font-weight: 600;
-            text-decoration: none;
-            transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
-        }
-
-        .btn-primary {
-            background-color: var(--green);
-            color: #ffffff;
-        }
-
-        .btn-outline {
-            border: 2px solid #ffffff;
-            color: #ffffff;
-        }
-
-        .btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.25);
-        }
-
-        .btn-primary:hover { background-color: var(--green-dark); }
-        .btn-outline:hover { background-color: rgba(255, 255, 255, 0.15); }
-
-        /* ---------- Main content cards ---------- */
-        main {
-            max-width: 900px;
-            margin: -60px auto 0; /* cards overlap the bottom of the hero slightly */
-            padding: 0 20px 40px;
-            position: relative;
-        }
-
-        .card {
-            background-color: var(--card);
-            border-radius: var(--radius);
-            box-shadow: var(--shadow);
-            padding: 32px;
-            margin-bottom: 24px;
-            opacity: 0;
-            animation: fadeUp 0.7s ease forwards;
-        }
-
-        /* Stagger the fade-in so cards appear one after another */
-        .card:nth-child(2) { animation-delay: 0.1s; }
-        .card:nth-child(3) { animation-delay: 0.2s; }
-        .card:nth-child(4) { animation-delay: 0.3s; }
-        .card:nth-child(5) { animation-delay: 0.4s; }
-
-        @keyframes fadeUp {
-            from { opacity: 0; transform: translateY(20px); }
-            to   { opacity: 1; transform: translateY(0); }
-        }
-
-        .card h2 {
-            margin-top: 0;
-            font-size: 1.5rem;
-            color: var(--green);
-        }
-
-        .card p { color: var(--text-soft); }
-
-        /* Lists */
-        .card ol, .card ul {
-            padding-left: 22px;
-            color: var(--text-soft);
-        }
-        .card li { margin-bottom: 8px; }
-        .card li::marker { color: var(--green); font-weight: 700; }
-
-        /* Two cards side by side on wide screens */
-        .grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 24px;
-        }
-        .grid .card { margin-bottom: 0; }
-
-        /* ---------- Links ---------- */
-        .links { text-align: center; }
-        .links p { margin-top: 0; margin-bottom: 20px; }
-
-        /* ---------- Projects ---------- */
-        .project {
-            border-left: 4px solid var(--green);
-            padding: 4px 0 4px 20px;
-            margin-bottom: 28px;
-        }
-        .project:last-child { margin-bottom: 0; }
-
-        .project h3 {
-            margin: 0 0 4px;
-            font-size: 1.15rem;
-            color: var(--text);
-        }
-        .project p { margin: 0; }
-
-        .tags {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 8px;
-            margin: 12px 0 20px;
-        }
-
-        .tag {
-            background-color: #e6f2ec;
-            color: var(--green);
-            font-size: 0.85rem;
-            font-weight: 600;
-            padding: 4px 12px;
-            border-radius: 999px;
-        }
-
-        /* ---------- Tables ---------- */
-        /* Table with no border */
-        .plain-table th {
-            text-align: left;
-            font-weight: 500;
-            color: var(--text-soft);
-            padding: 4px 0;
-        }
-
-        /* ---------- Footer ---------- */
-        footer {
-            text-align: center;
-            padding: 30px 20px;
-            color: var(--text-soft);
-            font-size: 0.9rem;
-        }
-        footer a {
-            color: var(--green);
-            font-weight: 600;
-            text-decoration: none;
-            margin: 0 8px;
-        }
-        footer a:hover { text-decoration: underline; }
-
-        /* ---------- Phone-friendly layout ---------- */
-        @media (max-width: 700px) {
-            .grid { grid-template-columns: 1fr; }
-            .card { padding: 22px; }
-            .hero { min-height: 60vh; }
-        }
-    </style>
+    <link rel="stylesheet" href="styles.css">
 </head>
 
 <body>
 
-    <!-- Hero header -->
-    <header class="hero">
-        <h1>Brian Sanchez</h1>
-        <p class="tagline">Computer Science Student at UWGB, with an emphasis on Software Engineering</p>
+    <!-- Starfield / floating particles behind everything -->
+    <canvas id="stars" aria-hidden="true"></canvas>
+
+    <!-- Decorative gradient rings (like the circles behind the reference design) -->
+    <div class="rings" aria-hidden="true">
+        <span></span><span></span><span></span>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="nav" id="nav">
+        <a class="logo" href="#home" aria-label="Brian Sanchez, back to top">
+            <svg viewBox="0 0 40 40" aria-hidden="true">
+                <circle cx="20" cy="20" r="17" />
+                <circle cx="20" cy="20" r="12" />
+                <circle cx="20" cy="20" r="7" />
+            </svg>
+            <span>BRIAN<b>SANCHEZ</b></span>
+        </a>
+
+        <button class="menu-toggle" id="menuToggle" aria-label="Open menu" aria-expanded="false" aria-controls="navLinks">
+            <span></span><span></span>
+        </button>
+
+        <ul class="nav-links" id="navLinks">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#resume">Resume</a></li>
+            <li><a href="#goals">Goals</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <!-- Side dots showing which section you're on -->
+    <ul class="side-dots" aria-hidden="true">
+        <li><a href="#home" tabindex="-1"></a></li>
+        <li><a href="#about" tabindex="-1"></a></li>
+        <li><a href="#projects" tabindex="-1"></a></li>
+        <li><a href="#resume" tabindex="-1"></a></li>
+        <li><a href="#goals" tabindex="-1"></a></li>
+        <li><a href="#contact" tabindex="-1"></a></li>
+    </ul>
+
+    <!-- ================= HERO ================= -->
+    <header class="hero" id="home">
+        <div class="globe-wrap" id="globeWrap" aria-hidden="true">
+            <canvas id="globe"></canvas>
+
+            <!-- Hexagon skill icons floating over the globe -->
+            <div class="hex h1" title="iOS Apps">
+                <svg viewBox="0 0 100 115"><polygon points="50,3 97,30 97,85 50,112 3,85 3,30" />
+                    <g class="ico"><rect x="38" y="34" width="24" height="44" rx="4" /><line x1="46" y1="72" x2="54" y2="72" /></g>
+                </svg>
+            </div>
+            <div class="hex h2" title="Databases">
+                <svg viewBox="0 0 100 115"><polygon points="50,3 97,30 97,85 50,112 3,85 3,30" />
+                    <g class="ico"><ellipse cx="50" cy="40" rx="16" ry="6" /><path d="M34 40v30c0 3.3 7.2 6 16 6s16-2.7 16-6V40" /><path d="M34 55c0 3.3 7.2 6 16 6s16-2.7 16-6" /></g>
+                </svg>
+            </div>
+            <div class="hex h3" title="Code">
+                <svg viewBox="0 0 100 115"><polygon points="50,3 97,30 97,85 50,112 3,85 3,30" />
+                    <g class="ico"><polyline points="40,44 30,57 40,70" /><polyline points="60,44 70,57 60,70" /><line x1="54" y1="40" x2="46" y2="74" /></g>
+                </svg>
+            </div>
+            <div class="hex h4" title="Charts">
+                <svg viewBox="0 0 100 115"><polygon points="50,3 97,30 97,85 50,112 3,85 3,30" />
+                    <g class="ico"><line x1="34" y1="76" x2="68" y2="76" /><rect x="37" y="60" width="6" height="16" /><rect x="47" y="50" width="6" height="26" /><rect x="57" y="40" width="6" height="36" /></g>
+                </svg>
+            </div>
+            <div class="hex h5" title="Education">
+                <svg viewBox="0 0 100 115"><polygon points="50,3 97,30 97,85 50,112 3,85 3,30" />
+                    <g class="ico"><polygon points="50,40 72,50 50,60 28,50" /><path d="M38 55v11c0 3 5.4 6 12 6s12-3 12-6V55" /><line x1="72" y1="50" x2="72" y2="64" /></g>
+                </svg>
+            </div>
+        </div>
+
+        <div class="hero-text">
+            <p class="eyebrow reveal">Engineering the Future</p>
+            <h1 class="reveal">Brian Sanchez</h1>
+            <p class="tagline reveal">Computer Science Student at UWGB, with a dual emphasis in <span class="typed">Software Engineering</span> and <span class="typed">Artificial Intelligence</span></p>
+            <div class="buttons reveal">
+                <a class="btn btn-glow" href="#projects">View Projects</a>
+                <a class="btn btn-ghost" href="#contact">Get in Touch</a>
+            </div>
+        </div>
+
+        <a class="scroll-cue" href="#about" aria-label="Scroll to About section"><span></span></a>
     </header>
 
     <main>
 
-        <!-- Links -->
-        <section class="card links">
-            <h2>Links</h2>
-            <p>Click on a hyperlink to visit the page.</p>
-            <div class="buttons">
-                <a class="btn btn-primary" href="https://github.com/briancsofficial-oss" target="_blank" rel="noopener">GitHub</a>
-                <a class="btn btn-primary" href="https://www.linkedin.com/in/brian-sanchez-5754731aa" target="_blank" rel="noopener">LinkedIn</a>
-                <a class="btn btn-primary" href="https://www.uwgb.edu/" target="_blank" rel="noopener">UWGB</a>
-                <a class="btn btn-primary" href="mailto:BCV.Sanchez@outlook.com">Email Me</a>
-            </div>
-        </section>
-        <!-- About Me -->
-        <section class="card">
-            <h2>About Me</h2>
-            <p>I'm a Computer Science student at UW-Green Bay with an emphasis in Software Engineering. I build iOS apps in Swift and SwiftUI and design relational databases with SQL. Before studying CS, I worked in banking, logistics, and sales, which taught me to solve problems for real customers in fast-paced environments.</p>
-
-            <!-- Table with no border -->
-            <table class="plain-table">
-                <thead>
-                    <tr><th>&#127891; B.S. Computer Science, expected May 2028</th></tr>
-                    <tr><th>&#127942; Semester Honors, Spring 2026</th></tr>
-                    <tr><th>&#128483; Bilingual: English and Spanish</th></tr>
-                    <tr><th>&#128205; Green Bay, Wisconsin</th></tr>
-                </thead>
-            </table>
-        </section>
-
-        <!-- Projects -->
-        <section class="card">
-            <h2>Projects</h2>
-
-            <div class="project">
-                <h3>The Wealth App: Personal Finance iOS App</h3>
-                <p>A five-tab personal finance app I built on my own in Swift and SwiftUI (~3,300 lines). It includes account and transaction views, a net-worth projection calculator charted with Swift Charts, debt payoff planning using the avalanche method, and savings goals with progress tracking. Data is saved on the device with Codable and JSON.</p>
-                <div class="tags">
-                    <span class="tag">Swift</span>
-                    <span class="tag">SwiftUI</span>
-                    <span class="tag">Swift Charts</span>
-                    <span class="tag">Xcode</span>
-                </div>
+        <!-- ================= ABOUT ================= -->
+        <section class="section" id="about">
+            <div class="section-head reveal">
+                <span class="index">01</span>
+                <h2>About Me</h2>
             </div>
 
-            <div class="project">
-                <h3>Library Database Management System</h3>
-                <p>A normalized relational database for a library, built in Microsoft SQL Server. It models books, authors, copies, visitors, memberships, loans, languages, and sections with primary and foreign keys, plus queries for memberships, book availability, and visitor activity.</p>
-                <div class="tags">
-                    <span class="tag">SQL</span>
-                    <span class="tag">Microsoft SQL Server</span>
-                    <span class="tag">Database Design</span>
-                </div>
-                <a class="btn btn-primary" href="https://github.com/briancsofficial-oss/SQL-Database-Project-" target="_blank" rel="noopener">View on GitHub</a>
-            </div>
+            <div class="about-grid">
+                <div class="panel reveal">
+                    <p>I'm a Computer Science student at UW-Green Bay with a dual emphasis in Software Engineering and Artificial Intelligence. I build iOS apps in Swift and SwiftUI, design relational databases with SQL, and I'm bringing AI into the apps I build. I'm a member of the Google Developer Group at UWGB, and I competed in the 2026 UWGB Hackathon, where my team built SmartFlow. I also work as an Associate Banker at Chase, and before that I worked in logistics and sales. Those roles taught me to solve problems for real customers in fast-paced environments.</p>
 
-            <div class="project">
-                <h3>Personal Website</h3>
-                <p>This website, which I designed and built from scratch. It uses CSS Grid, Flexbox, and media queries for a layout that works on phones, with hover and fade-in animations.</p>
-                <div class="tags">
-                    <span class="tag">HTML</span>
-                    <span class="tag">CSS</span>
-                    <span class="tag">Git</span>
+                    <ul class="facts">
+                        <li><span class="fact-ico">&#127891;</span>B.S. Computer Science, expected May 2028</li>
+                        <li><span class="fact-ico">&#129302;</span>Dual emphasis: Software Engineering &amp; AI</li>
+                        <li><span class="fact-ico">&#128187;</span>Google Developer Group member, UWGB</li>
+                        <li><span class="fact-ico">&#9889;</span>2026 UWGB Hackathon participant</li>
+                        <li><span class="fact-ico">&#127942;</span>Semester Honors, Spring 2026</li>
+                        <li><span class="fact-ico">&#128483;</span>Bilingual: English and Spanish</li>
+                        <li><span class="fact-ico">&#128205;</span>Green Bay, Wisconsin</li>
+                    </ul>
                 </div>
-                <a class="btn btn-primary" href="https://github.com/briancsofficial-oss" target="_blank" rel="noopener">View My GitHub</a>
+
+                <figure class="holo reveal">
+                    <img src="UWGB.jpg" alt="The University of Wisconsin-Green Bay campus" loading="lazy">
+                    <figcaption>UW-Green Bay</figcaption>
+                </figure>
             </div>
         </section>
 
-        <!-- Goals and Interests side by side -->
-        <div class="grid">
-            <!-- Ordered list -->
-            <section class="card">
-                <h2>Goals in CS</h2>
-                <ol>
-                    <li>Grow my overall knowledge of software engineering.</li>
-                    <li>Learn more about machine learning and AI.</li>
-                    <li>Learn more about cloud-based services, including their risks and benefits.</li>
-                </ol>
-            </section>
+        <!-- ================= PROJECTS ================= -->
+        <section class="section" id="projects">
+            <div class="section-head reveal">
+                <span class="index">02</span>
+                <h2>Projects</h2>
+            </div>
 
-            <!-- Unordered list -->
-            <section class="card">
-                <h2>Interests</h2>
-                <ul>
-                    <li>Weightlifting whenever I can.</li>
-                    <li>Playing fútbol (soccer) whenever I get the chance.</li>
-                    <li>Gaming in my free time.</li>
-                </ul>
-            </section>
-        </div>
+            <div class="projects">
+                <article class="panel project featured reveal">
+                    <span class="project-num">P.01 <span class="badge">HackGB 2026 &middot; Industrial Track</span></span>
+                    <h3>SmartFlow: Financial Risk Intelligence iOS App</h3>
+                    <p>An AI-assisted iOS app that helps small manufacturing businesses understand their financial health and test risks before they happen. I led the product direction for our team of four and took ownership of all the iOS design, architecture, and development.</p>
+                    <ul class="points">
+                        <li>Built three LLM agents on the OpenAI Responses API with structured JSON outputs: a guided business intake interview, a financial document reader, and an action-plan writer.</li>
+                        <li>Developed a what-if simulator that combines 4 cost and revenue drivers with break-even risk thresholds, verified by 9 XCTest unit tests.</li>
+                        <li>Built Face ID login with a password fallback. Only a password hash and the API key are stored, in the iOS Keychain, restricted to that device.</li>
+                    </ul>
+                    <div class="tags">
+                        <span class="tag">Swift</span>
+                        <span class="tag">SwiftUI</span>
+                        <span class="tag">OpenAI API</span>
+                        <span class="tag">LLM Agents</span>
+                        <span class="tag">XCTest</span>
+                        <span class="tag">Face ID / Keychain</span>
+                    </div>
+                    <a class="btn btn-ghost btn-sm" href="https://github.com/briancsofficial-oss/Hackathon-Project-iOS-App-2026" target="_blank" rel="noopener">View on GitHub &rarr;</a>
+                </article>
+
+                <article class="panel project featured reveal">
+                    <span class="project-num">P.02 <span class="badge">HackGB 2026 &middot; In Development</span></span>
+                    <h3>SmartFlow Web: Manufacturing Risk Analysis Website</h3>
+                    <p>The web version of SmartFlow, built with the same team. It is organized into Overview, Explore Risks, Improve Cash Flow, and Advanced Tools. It adds a Cash Gap Navigator that finds short-term cash shortages and weighs supplier minimum orders and payment terms against business cash targets. The frontend, backend, and data structure are set up, and the features are being built out.</p>
+                    <div class="tags">
+                        <span class="tag">Web App</span>
+                        <span class="tag">Frontend / Backend</span>
+                        <span class="tag">Financial Modeling</span>
+                        <span class="tag">Team Project</span>
+                    </div>
+                    <a class="btn btn-ghost btn-sm" href="https://github.com/briancsofficial-oss/Hackathon-Website-UWGB-2026" target="_blank" rel="noopener">View on GitHub &rarr;</a>
+                </article>
+
+                <article class="panel project reveal">
+                    <span class="project-num">P.03</span>
+                    <h3>The Wealth App: Personal Finance iOS App</h3>
+                    <p>A five-tab personal finance iOS app I built on my own, covering accounts, transactions, net-worth planning, and goals.</p>
+                    <ul class="points">
+                        <li>Engineered an on-device LLM assistant with Apple Foundation Models that grounds its answers in each user's own financial data.</li>
+                        <li>Added Face ID login with a password fallback, keeping only a password hash in the iOS Keychain, plus a WidgetKit Home Screen widget.</li>
+                        <li>Built budgets with spending alerts, bill reminders, a MapKit purchase map, and avalanche and snowball debt payoff planning.</li>
+                    </ul>
+                    <div class="tags">
+                        <span class="tag">Swift</span>
+                        <span class="tag">SwiftUI</span>
+                        <span class="tag">Apple Foundation Models</span>
+                        <span class="tag">Swift Charts</span>
+                        <span class="tag">WidgetKit</span>
+                        <span class="tag">MapKit</span>
+                    </div>
+                </article>
+
+                <article class="panel project reveal">
+                    <span class="project-num">P.04</span>
+                    <h3>Library Database Management System</h3>
+                    <p>A normalized relational database for a library, built in Microsoft SQL Server. It models books, authors, copies, visitors, memberships, loans, languages, and sections with primary and foreign keys, plus queries for memberships, book availability, and visitor activity.</p>
+                    <div class="tags">
+                        <span class="tag">SQL</span>
+                        <span class="tag">Microsoft SQL Server</span>
+                        <span class="tag">Database Design</span>
+                    </div>
+                    <a class="btn btn-ghost btn-sm" href="https://github.com/briancsofficial-oss/SQL-Database-Project-" target="_blank" rel="noopener">View on GitHub &rarr;</a>
+                </article>
+
+                <article class="panel project reveal">
+                    <span class="project-num">P.05</span>
+                    <h3>Personal Website</h3>
+                    <p>This website, which I designed and built from scratch. It features an animated 3D particle globe drawn with the HTML Canvas API, glassmorphism panels, scroll-triggered animations, and a responsive layout built with CSS Grid, Flexbox, and media queries.</p>
+                    <div class="tags">
+                        <span class="tag">HTML</span>
+                        <span class="tag">CSS</span>
+                        <span class="tag">JavaScript</span>
+                        <span class="tag">Canvas</span>
+                        <span class="tag">Git</span>
+                    </div>
+                    <a class="btn btn-ghost btn-sm" href="https://github.com/briancsofficial-oss" target="_blank" rel="noopener">View My GitHub &rarr;</a>
+                </article>
+            </div>
+        </section>
+
+        <!-- ================= RESUME / CV ================= -->
+        <section class="section" id="resume">
+            <div class="section-head reveal">
+                <span class="index">03</span>
+                <h2>Resume</h2>
+            </div>
+
+            <div class="resume-grid">
+                <div class="panel reveal">
+                    <h3 class="cv-title">Education</h3>
+                    <ul class="timeline">
+                        <li>
+                            <span class="when">Expected May 2028</span>
+                            <strong>University of Wisconsin-Green Bay</strong>
+                            <span>B.S. Computer Science &middot; Dual emphasis in Software Engineering and Artificial Intelligence</span>
+                            <span>Semester Honors, Spring 2026 &middot; Google Developer Group on Campus member</span>
+                            <span>Coursework: Computer Programming II (C++), Computer Architecture, Database Design, Mobile Computing</span>
+                        </li>
+                    </ul>
+
+                    <h3 class="cv-title">Experience</h3>
+                    <ul class="timeline">
+                        <li>
+                            <span class="when">Dec 2025 &ndash; Present</span>
+                            <strong>Associate Banker &middot; Chase</strong>
+                            <span>Manage accounts and transactions in a high-volume branch, resolving customer issues across multiple banking systems under regulatory requirements.</span>
+                        </li>
+                        <li>
+                            <span class="when">Feb 2024 &ndash; Aug 2024</span>
+                            <strong>Regional Account Manager &middot; Central States Casters &amp; Material Handling</strong>
+                            <span>Managed regional accounts, evaluating customers' operational needs and recommending material-handling solutions.</span>
+                        </li>
+                        <li>
+                            <span class="when">Jan 2023 &ndash; May 2024</span>
+                            <strong>Senior Sales Account Executive &middot; Schneider</strong>
+                            <span>Helped secure a shipping partner generating $500K+ in annual brokerage revenue.</span>
+                            <span>Set the apprentice seller record with 285 outbound calls and 6.5 hours of talk time in one day.</span>
+                        </li>
+                    </ul>
+
+                    <h3 class="cv-title">Activities</h3>
+                    <ul class="timeline">
+                        <li>
+                            <span class="when">Oct 2026</span>
+                            <strong>HackGB 2026 &middot; Industrial Track</strong>
+                            <span>Led a 4-person team building SmartFlow, an AI-assisted financial risk app for small manufacturers. I owned the iOS design, architecture, and development.</span>
+                        </li>
+                        <li>
+                            <span class="when">Current</span>
+                            <strong>Google Developer Group on Campus, UWGB</strong>
+                            <span>Member of the campus developer community</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="panel reveal">
+                    <h3 class="cv-title">Technical Skills</h3>
+                    <div class="skill-group">
+                        <span class="skill-label">Languages</span>
+                        <div class="tags">
+                            <span class="tag">Swift</span>
+                            <span class="tag">Python</span>
+                            <span class="tag">C++</span>
+                            <span class="tag">C</span>
+                            <span class="tag">SQL</span>
+                            <span class="tag">Assembly</span>
+                            <span class="tag">HTML/CSS</span>
+                        </div>
+                    </div>
+                    <div class="skill-group">
+                        <span class="skill-label">AI</span>
+                        <div class="tags">
+                            <span class="tag">LLM Agents</span>
+                            <span class="tag">OpenAI API</span>
+                            <span class="tag">Apple Foundation Models</span>
+                            <span class="tag">Structured Outputs</span>
+                            <span class="tag">Prompt Engineering</span>
+                        </div>
+                    </div>
+                    <div class="skill-group">
+                        <span class="skill-label">AI Dev Tools</span>
+                        <div class="tags">
+                            <span class="tag">Claude Code</span>
+                            <span class="tag">GitHub Copilot</span>
+                        </div>
+                    </div>
+                    <div class="skill-group">
+                        <span class="skill-label">Tools</span>
+                        <div class="tags">
+                            <span class="tag">Git</span>
+                            <span class="tag">GitHub</span>
+                            <span class="tag">Xcode</span>
+                            <span class="tag">Android Studio</span>
+                            <span class="tag">VS Code</span>
+                            <span class="tag">Visual Studio</span>
+                            <span class="tag">Microsoft SQL Server</span>
+                        </div>
+                    </div>
+                    <div class="skill-group">
+                        <span class="skill-label">Spoken</span>
+                        <div class="tags">
+                            <span class="tag">English</span>
+                            <span class="tag">Spanish (bilingual)</span>
+                        </div>
+                    </div>
+
+                    <!-- Shown automatically once a resume.pdf file is added next to index.html -->
+                    <a class="btn btn-glow cv-download" id="cvDownload" href="resume.pdf" target="_blank" rel="noopener" hidden>Download Resume (PDF)</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= GOALS + INTERESTS ================= -->
+        <section class="section" id="goals">
+            <div class="section-head reveal">
+                <span class="index">04</span>
+                <h2>Goals &amp; Interests</h2>
+            </div>
+
+            <div class="grid">
+                <div class="panel reveal">
+                    <h3>Goals in CS</h3>
+                    <ol class="list">
+                        <li>Grow my overall knowledge of software engineering.</li>
+                        <li>Learn more about machine learning and AI.</li>
+                        <li>Learn more about cloud-based services, including their risks and benefits.</li>
+                    </ol>
+                </div>
+
+                <div class="panel reveal">
+                    <h3>Interests</h3>
+                    <ul class="list">
+                        <li>Weightlifting whenever I can.</li>
+                        <li>Playing fútbol (soccer) whenever I get the chance.</li>
+                        <li>Gaming in my free time.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= CONTACT ================= -->
+        <section class="section" id="contact">
+            <div class="section-head reveal">
+                <span class="index">05</span>
+                <h2>Connect</h2>
+            </div>
+
+            <div class="panel contact reveal">
+                <p>Click on a link to visit the page.</p>
+                <div class="link-grid">
+                    <a class="link-tile" href="https://github.com/briancsofficial-oss" target="_blank" rel="noopener">
+                        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 .5a11.5 11.5 0 0 0-3.64 22.41c.58.1.79-.25.79-.56v-2c-3.2.7-3.88-1.37-3.88-1.37-.53-1.33-1.3-1.69-1.3-1.69-1.05-.72.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.77 2.71 1.26 3.37.96.1-.75.4-1.26.73-1.55-2.55-.29-5.24-1.28-5.24-5.69 0-1.26.45-2.29 1.19-3.1-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.17 1.18a11 11 0 0 1 5.77 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.23 2.76.11 3.05.74.81 1.19 1.84 1.19 3.1 0 4.42-2.69 5.39-5.26 5.68.41.36.78 1.06.78 2.14v3.17c0 .31.21.67.8.56A11.5 11.5 0 0 0 12 .5Z"/></svg>
+                        <span>GitHub</span>
+                    </a>
+                    <a class="link-tile" href="https://www.linkedin.com/in/brian-sanchez-5754731aa" target="_blank" rel="noopener">
+                        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.03-3.04-1.85-3.04-1.86 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28ZM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12ZM7.12 20.45H3.56V9h3.56v11.45ZM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.73C24 .77 23.2 0 22.22 0Z"/></svg>
+                        <span>LinkedIn</span>
+                    </a>
+                    <a class="link-tile" href="https://www.uwgb.edu/" target="_blank" rel="noopener">
+                        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3 1 9l11 6 9-4.91V17h2V9L12 3Zm-6.82 9.18v4L12 20l6.82-3.82v-4L12 16l-6.82-3.82Z"/></svg>
+                        <span>UWGB</span>
+                    </a>
+                    <a class="link-tile" href="mailto:BCV.Sanchez@outlook.com">
+                        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2Zm0 4.24-8 5-8-5V6l8 5 8-5v2.24Z"/></svg>
+                        <span>Email Me</span>
+                    </a>
+                </div>
+            </div>
+        </section>
 
     </main>
 
-    <!-- Footer -->
     <footer>
-        <p>
-            <a href="https://github.com/briancsofficial-oss" target="_blank" rel="noopener">GitHub</a>
-            <a href="https://www.linkedin.com/in/brian-sanchez-5754731aa" target="_blank" rel="noopener">LinkedIn</a>
-            <a href="https://www.uwgb.edu/" target="_blank" rel="noopener">UWGB</a>
-            <a href="mailto:BCV.Sanchez@outlook.com">Email</a>
-        </p>
-        <p>&copy; 2026 Brian Sanchez</p>
+        <p>&copy; 2026 Brian Sanchez &middot; Built with HTML, CSS &amp; JavaScript</p>
     </footer>
 
+    <script src="script.js"></script>
 </body>
 </html>
