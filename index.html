@@ -117,7 +117,7 @@
 
             <div class="about-grid">
                 <div class="panel reveal">
-                    <p>I'm a Computer Science student at UW-Green Bay with a dual emphasis in Software Engineering and Artificial Intelligence. I build iOS apps in Swift and SwiftUI, design relational databases with SQL, and I'm bringing AI into the apps I build. I'm a member of the Google Developer Group at UWGB, and I competed in the 2026 UWGB Hackathon, where my team built SmartFlow. I also work as an Associate Banker at Chase, and before that I worked in logistics and sales. Those roles taught me to solve problems for real customers in fast-paced environments.</p>
+                    <p>I'm a Computer Science student at UW-Green Bay with a dual emphasis in Software Engineering and Artificial Intelligence. I build iOS apps in Swift and SwiftUI, write Node.js backends, design relational databases with SQL, and I'm bringing AI into the apps I build. I'm a member of the Google Developer Group at UWGB, and I competed in the 2026 UWGB Hackathon, where my team built SmartFlow. I also work as an Associate Banker at Chase, and before that I worked in logistics and sales. Those roles taught me to solve problems for real customers in fast-paced environments.</p>
 
                     <ul class="facts">
                         <li><span class="fact-ico">&#127891;</span>B.S. Computer Science, expected May 2028</li>
@@ -148,6 +148,7 @@
                 <article class="panel project featured reveal">
                     <span class="project-num">P.01 <span class="badge">HackGB 2026 &middot; Industrial Track</span></span>
                     <h3>SmartFlow: Financial Risk Intelligence iOS App</h3>
+                    <span class="project-date">Oct. 2026</span>
                     <p>An AI-assisted iOS app that helps small manufacturing businesses understand their financial health and test risks before they happen. I led the product direction for our team of four and took ownership of all the iOS design, architecture, and development.</p>
                     <ul class="points">
                         <li>Built three LLM agents on the OpenAI Responses API with structured JSON outputs: a guided business intake interview, a financial document reader, and an action-plan writer.</li>
@@ -181,26 +182,36 @@
                 <article class="panel project reveal">
                     <span class="project-num">P.03</span>
                     <h3>The Wealth App: Personal Finance iOS App</h3>
-                    <p>A five-tab personal finance iOS app I built on my own, covering accounts, transactions, net-worth planning, and goals.</p>
+                    <span class="project-date">Sept. &ndash; Oct. 2026</span>
+                    <p>A personal finance iPhone app that answers one question: am I on track to reach my net worth goal? I built it on my own as my final project for Intro to Mobile Computing at UWGB, with a Node.js backend for secure bank connections and on-device AI that keeps financial data private.</p>
                     <ul class="points">
-                        <li>Engineered an on-device LLM assistant with Apple Foundation Models that grounds its answers in each user's own financial data.</li>
-                        <li>Added Face ID login with a password fallback, keeping only a password hash in the iOS Keychain, plus a WidgetKit Home Screen widget.</li>
-                        <li>Built budgets with spending alerts, bill reminders, a MapKit purchase map, and avalanche and snowball debt payoff planning.</li>
+                        <li>Built a bank-style Home tab, a financial health score, budgets, bill reminders, savings goals, and a Wealth Plan that projects net worth year by year and pays down debt at real APRs.</li>
+                        <li>Integrated Plaid (Sandbox) through a password-protected Node.js server that keeps API secrets off the device, supporting 12+ account types and covered by 59 automated tests.</li>
+                        <li>Parsed PDF bank statements on device with PDFKit and Apple Intelligence, so no financial data leaves the phone.</li>
+                        <li>Built two AI assistants, Max and Sparky, on Apple Intelligence and OpenAI Structured Outputs, where the app, not the model, computes every chart value.</li>
+                        <li>Kept all data on the iPhone, with Face ID login and passwords and API keys stored only in the iOS Keychain.</li>
                     </ul>
                     <div class="tags">
                         <span class="tag">Swift</span>
                         <span class="tag">SwiftUI</span>
-                        <span class="tag">Apple Foundation Models</span>
                         <span class="tag">Swift Charts</span>
-                        <span class="tag">WidgetKit</span>
-                        <span class="tag">MapKit</span>
+                        <span class="tag">Node.js</span>
+                        <span class="tag">Plaid API</span>
+                        <span class="tag">OpenAI API</span>
+                        <span class="tag">Apple Foundation Models</span>
+                        <span class="tag">PDFKit</span>
                     </div>
+                    <a class="btn btn-ghost btn-sm" href="https://github.com/briancsofficial-oss/TheWealthApp" target="_blank" rel="noopener">View on GitHub &rarr;</a>
                 </article>
 
                 <article class="panel project reveal">
                     <span class="project-num">P.04</span>
                     <h3>Library Database Management System</h3>
-                    <p>A normalized relational database for a library, built in Microsoft SQL Server. It models books, authors, copies, visitors, memberships, loans, languages, and sections with primary and foreign keys, plus queries for memberships, book availability, and visitor activity.</p>
+                    <p>A relational database for a library, built in Microsoft SQL Server.</p>
+                    <ul class="points">
+                        <li>Designed a normalized schema modeling books, authors, copies, visitors, memberships, and loans with primary and foreign keys.</li>
+                        <li>Wrote SQL queries for active memberships, book availability, and visitor activity.</li>
+                    </ul>
                     <div class="tags">
                         <span class="tag">SQL</span>
                         <span class="tag">Microsoft SQL Server</span>
@@ -250,7 +261,7 @@
                         <li>
                             <span class="when">Dec 2025 &ndash; Present</span>
                             <strong>Associate Banker &middot; Chase</strong>
-                            <span>Manage accounts and transactions in a high-volume branch, resolving customer issues across multiple banking systems under regulatory requirements.</span>
+                            <span>Manage accounts and transactions in a high-volume branch, resolving customer issues within regulations.</span>
                         </li>
                         <li>
                             <span class="when">Feb 2024 &ndash; Aug 2024</span>
@@ -287,6 +298,7 @@
                         <div class="tags">
                             <span class="tag">Swift</span>
                             <span class="tag">Python</span>
+                            <span class="tag">JavaScript (Node.js)</span>
                             <span class="tag">C++</span>
                             <span class="tag">C</span>
                             <span class="tag">SQL</span>
@@ -316,6 +328,7 @@
                         <div class="tags">
                             <span class="tag">Git</span>
                             <span class="tag">GitHub</span>
+                            <span class="tag">Plaid API</span>
                             <span class="tag">Xcode</span>
                             <span class="tag">Android Studio</span>
                             <span class="tag">VS Code</span>
